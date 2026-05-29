@@ -95,6 +95,7 @@ correrTests = hspec $ do
 -}
 
 -- & -------------------------------------------- Test Practica 2 ---------------------------------
+{-
 
 -- 1. 
 
@@ -155,3 +156,32 @@ correrTests = hspec $ do
   describe "esResultadoPar" $ do
     it "4 elevado al cubo es par" $ do 
       esResultadoPar 4 3 `shouldBe` True
+
+-}
+-- & ----------------------------------------------------- Test Practica 3 ------------------------------------------
+
+-- 1. 
+
+  describe "fst3" $ do 
+    it "El primer elemento de la tupla (0,1,2) es 0" $ do
+      fst3 (0,1,2) `shouldBe` 0
+
+  describe "snd3" $ do 
+    it "El segundo elemento de la tupla (0,1,2) es 1" $ do
+      snd3 (0,1,2) `shouldBe` 1
+
+  describe "trd3" $ do 
+    it "El tercer elemento de la tupla (0,1,2) es 2" $ do
+      trd3 (0,1,2) `shouldBe` 2
+
+-- 2.
+
+  describe "aplicar" $ do
+    it " aplicar (doble, triple) 8 me devuelve (16,24)" $ do
+      aplicar (doble, triple) 8 `shouldBe` (16,24)
+
+-- 3.
+
+  describe "cuentaBizarra" $ do
+    it " la cuenta bizarra entre 5 y 8 da como resultado 40" $ do
+      cuentaBizarra (5,8) `shouldBe` 40

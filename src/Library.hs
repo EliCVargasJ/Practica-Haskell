@@ -5,10 +5,10 @@ import GHC.RTS.Flags (MiscFlags(disableDelayedOsMemoryReturn))
 import GHC.Float (RealFloat(isNegativeZero), Floating (sqrt))
 
 -- Funcion incial del test (vino por defecto)
-
+{-
 doble :: Number -> Number 
 doble numero = 2 * numero 
-
+-}
 ---------------------------------------------------------------------------------------------------------------------
 
 -- &&  -------------------------------------- Practica 1: Primeros ejercicios ---------------------------------------------
@@ -93,7 +93,7 @@ diasNormales temperaturaDia1 temperaturaDia2 temperaturaDia3 | diasParejos tempe
 -} 
 
 -- & ------------------------------------- Practica 2: Aplicacion Parcial y Composicion ---------------------------------------------
-
+{-
 -- 1. Definir una función siguiente, que al invocarla con un número cualquiera me devuelve el resultado de sumar a ese número el 1.
 
 siguiente :: Number -> Number 
@@ -146,3 +146,43 @@ incrementMCuadradoN incremento numeroaelevar = ((incremento +). (^2))numeroaelev
 
 esResultadoPar :: Number -> Number -> Bool 
 esResultadoPar base exponente = (even . (^ exponente) )base
+
+-}
+
+-- & ------------------------------------- Practica 3: Tuplas --------------------------------------------------
+
+-- 1. Definir las funciones fst3, snd3, trd3, que dada una tupla de 3 elementos devuelva el elemento correspondiente
+
+fst3 :: (Number, Number, Number) -> Number 
+fst3 (numero, _ , _) = numero
+
+snd3 :: (Number, Number, Number) -> Number
+snd3 (_, numero, _) = numero
+
+trd3 :: (Number, Number, Number ) -> Number 
+trd3 (_,_, numero) = numero
+
+-- 2. Definir la función aplicar, que recibe como argumento una tupla de 2 elementos con funciones y un entero, me devuelve como resultado una tupla con el resultado 
+-- de aplicar el elemento a cada una de la funciones.
+
+
+doble :: Number -> Number 
+doble = (*2)
+triple :: Number -> Number 
+triple = (*3)
+
+aplicar :: (doble, triple ) -> Number -> (Number, Number)
+aplicar (funcion1, funcion2) numero = (doble numero, triple numero)
+
+-- 3.  Definir la función cuentaBizarra, que recibe un par y: si el primer elemento es mayor al segundo devuelve la suma, si el segundo le lleva más de 10 al primero 
+--     devuelve la resta 2do – 1ro, y si el segundo es más grande que el 1ro pero no llega a llevarle 10, devuelve el producto. 
+
+cuentaBizarra :: (Number, Number ) -> Number 
+cuentaBizarra valores | fst valores > snd valores = fst valores + snd valores
+                      | snd valores - fst valores > 10 = snd valores - fst valores
+                      | otherwise = fst valores * snd valores
+
+
+-- 4. 
+
+
