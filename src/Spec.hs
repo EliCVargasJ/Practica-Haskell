@@ -185,3 +185,24 @@ correrTests = hspec $ do
   describe "cuentaBizarra" $ do
     it " la cuenta bizarra entre 5 y 8 da como resultado 40" $ do
       cuentaBizarra (5,8) `shouldBe` 40
+
+
+-- 4. 
+
+-- a.
+
+  describe " esNotaBochazo" $ do
+    it "la nota 2 es un bochazo" $ do
+      esNotaBochazo 2 `shouldBe` True
+
+-- b.
+
+  describe "aprobo" $ do
+    it " El alumno con notas (2,7) no aprobo" $ do
+      aprobo (2,7) `shouldBe` False
+
+-- c.
+
+  describe "promociono" $ do
+    it "El alumno con las notas (8,8) promociono" $ do
+      promociono (8,8) `shouldBe` True

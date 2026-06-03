@@ -3,6 +3,7 @@ import PdePreludat
 import GHC.Num (Num)
 import GHC.RTS.Flags (MiscFlags(disableDelayedOsMemoryReturn))
 import GHC.Float (RealFloat(isNegativeZero), Floating (sqrt))
+import GHC.Conc (par)
 
 -- Funcion incial del test (vino por defecto)
 {-
@@ -184,5 +185,65 @@ cuentaBizarra valores | fst valores > snd valores = fst valores + snd valores
 
 
 -- 4. 
+{-
+    Representamos las notas que se sacó un alumno en dos parciales mediante un par (nota1,nota2), p.ej. un patito en el 1ro y un 7 en el 2do se representan mediante el par (2,7).  
+A partir de esto: 
+
+a. Definir la función esNotaBochazo, recibe un número y devuelve True si no llega a 6, False en caso contrario. No vale usar guardas.  
+
+b. Definir la función aprobo, recibe un par e indica si una persona que se sacó esas notas aprueba. Usar esNotaBochazo.  
+
+c. Definir la función promociono, que indica si promocionó, para eso tiene las dos notas tienen que sumar al menos 15 y además haberse sacado al menos 7 en cada parcial.  
+
+d. Escribir una consulta que dado un par indica si aprobó el primer parcial, usando esNotaBochazo y composición. 
+
+-}
+
+-- a. 
+
+esNotaBochazo :: Number -> Bool
+esNotaBochazo = (<6)
+
+-- b. 
+
+aprobo :: (Number, Number ) -> Bool
+aprobo parDeNotas =( not $ (esNotaBochazo . fst) parDeNotas ) && (not $ (esNotaBochazo . snd) parDeNotas)
+
+-- c.
+
+promociono :: (Number , Number ) -> Bool
+promociono parDeNotas = (fst parDeNotas + snd parDeNotas >= 15) && (fst parDeNotas >= 7 || snd parDeNotas >= 7)
+
+
+-- d.
+{-
+    lo que se debe ver por consola es: 
+    > not $ (esNotaBochazo . fst) (5,8) 
+    > False
+
+-}
+
+-- 5.
+
+ {-
+    Siguiendo con el dominio del ejercicio anterior, tenemos ahora dos parciales con dos recuperatorios, lo representamos : ((parc1,parc2),(recup1,recup2)).  
+  
+Observamos que con la codificación elegida, siempre la mejor nota es el máximo 
+entre nota del parcial y nota del recuperatorio.  
+
+Considerar que vale recuperar para promocionar. En este ejercicio vale usar las funciones que se definieron para el anterior. 
+
+a. Definir la función notasFinales que recibe un par de pares y devuelve el par que corresponde a las notas finales del alumno para el 1er y el 2do.
+
+b. Escribir la consulta que indica si un alumno cuyas notas son ((2,7),(6,-1)) recursa o no. O sea, la respuesta debe ser True si recursa, y False si no 
+recursa. Usar las funciones definidas en este punto y el anterior, y composición.
+
+c. Escribir la consulta que indica si un alumno cuyas notas son ((2,7),(6,-1)) recuperó el primer parcial. Usar composición. 
+
+d. Definir la función recuperoDeGusto que dado el par de pares que representa a un alumno, devuelve True si el alumno, pudiendo promocionar 
+con los parciales (o sea sin recup.), igual rindió al menos un recup. Vale definir funciones auxiliares. Hacer una definición que no use pattern 
+matching, en las eventuales funciones auxiliares tampoco; o sea, manejarse siempre con fst y snd.
+
+ -}   
 
 
